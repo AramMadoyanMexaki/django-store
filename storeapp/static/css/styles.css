@@ -1,0 +1,72 @@
+/* glob */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* variables */
+
+/* :root {
+    
+} */
+
+/* header */
+
+.header {
+    background-color: aquamarine;
+}
+
+.main_title {
+    font-size: 45px;
+    line-height: 45px;
+}
+
+.header_container {
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.nav_list {
+    align-items: center;
+    gap: 50px;
+}
+
+.nav_link {
+    font-size: 25px;
+    line-height: 20px;
+}
+
+/* sections */
+
+.main_section {
+    margin-top: 70px;
+}
+
+/* footer */
+
+.footer {
+    background-color: aquamarine;
+}

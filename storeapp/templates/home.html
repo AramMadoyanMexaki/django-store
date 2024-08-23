@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block context %}
+    <ul class="list product_list">
+        {% for p in products %}
+            <h2>{{ name }}</h2>
+            <li class="product_item">
+                <p class="product_descr">Price for kg: {{ price }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

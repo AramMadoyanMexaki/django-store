@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <header class="header">
+            <div class="container header_container flex">
+                <a href="./home.html">
+                    <img src="{% static 'images/store_icon.png' %}" alt="icon">
+                </a>
+                <ul class="list nav_list flex">
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">vegetables</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">meat</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">log in</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section class="main_section">
+            <div class="container">
+                <div class="context">
+                    <h1 class="main_title">Hello</h1>
+                    <h2 class="sec_title"></h2>
+                    <ul class="list sec_list">
+                        <li class="sec_item"></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer_container">
+            <span class="copy_right">StoreDjango ® 2024</span>
+            <p class="date"></p>
+        </div>
+    </footer>
+</body>
+</html>
