@@ -3,10 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from .models import *
 
-def index(request):
-    return HttpResponse("OK!")
 
-def home(request):
+def index(request):
     products = Product.objects.all()
     
     prices = [product.price for product in products]
@@ -25,3 +23,4 @@ def fruits(request):
 
 def base(request):
     return render(request, "base.html", {})
+

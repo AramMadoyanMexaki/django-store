@@ -65,8 +65,13 @@ a {
     margin-top: 70px;
 }
 
+.product_item {
+    margin-bottom: 35px;
+}
+
 /* footer */
 
 .footer {
     background-color: aquamarine;
+    margin-top: 70px;
 }

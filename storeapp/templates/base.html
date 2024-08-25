@@ -17,26 +17,31 @@
                 </a>
                 <ul class="list nav_list flex">
                     <li class="nav_item">
-                        <a href="#" class="nav_link">vegetables</a>
+                        <a href="#" class="nav_link">Vegetables</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#" class="nav_link">meat</a>
+                        <a href="#" class="nav_link">Meat</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#" class="nav_link">log in</a>
+                        <a href="#" class="nav_link">Add a new product</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">Log in</a>
                     </li>
                 </ul>
             </div>
         </header>
         <section class="main_section">
             <div class="container">
+                {% block content %}
                 <div class="context">
-                    <h1 class="main_title">Hello</h1>
+                    <h1 class="main_title">{{ name }}</h1>
                     <h2 class="sec_title"></h2>
                     <ul class="list sec_list">
                         <li class="sec_item"></li>
                     </ul>
                 </div>
+                {% endblock %}
             </div>
         </section>
     </main>
