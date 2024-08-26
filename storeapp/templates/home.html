@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
+
 {% block content %}
     <ul class="list product_list">
         {% for p in products %}
-            <h2>{{ p.name }}</h2>
+            <h2 class="product_name">{{ p.name }}</h2>
             <li class="product_item">
                 <p class="product_descr">Price for kg: {{ p.price }}$</p>
+                {% if p.photo %}
+                    <img class="product_image" src="{{ p.photo.url }}" alt="product" width="250">
+                {% endif %}
+                <button class="but_btn">Buy</button>
             </li>
         {% endfor %}
     </ul>

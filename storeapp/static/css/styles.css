@@ -69,9 +69,15 @@ a {
     margin-bottom: 35px;
 }
 
+.but_btn {
+    font-size: 45px;
+    color: red;
+}
+
 /* footer */
 
 .footer {
     background-color: aquamarine;
     margin-top: 70px;
 }
+

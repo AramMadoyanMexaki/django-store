@@ -12,12 +12,15 @@
     <main>
         <header class="header">
             <div class="container header_container flex">
-                <a href="./home.html">
+                <a href="{% url 'home' %}">
                     <img src="{% static 'images/store_icon.png' %}" alt="icon">
                 </a>
                 <ul class="list nav_list flex">
                     <li class="nav_item">
-                        <a href="#" class="nav_link">Vegetables</a>
+                        <a href="{% url 'vegan' %}" class="nav_link">Vegetables</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{% url 'fruits' %}" class="nav_link">Fruits</a>
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_link">Meat</a>
