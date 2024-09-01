@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="product_cat">{{ category }}</h1>
+    <ul class="list product_list">
+        {% for p in products %}
+            <li class="product_item">
+                <h2 class="product_name">{{ p.name }}</h2>
+                {% if p.photo %}
+                    <img src="{{ p.photo.url }}" alt="product" width="200px">
+                {% endif %}
+                <p class="price">Price for kg: {{ p.price }}$</p>
+                <button class="buy_btn">Buy</button>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

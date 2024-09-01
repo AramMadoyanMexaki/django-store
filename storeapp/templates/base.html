@@ -17,16 +17,16 @@
                 </a>
                 <ul class="list nav_list flex">
                     <li class="nav_item">
-                        <a href="{% url 'vegan' %}" class="nav_link">Vegetables</a>
+                        <a href="{% url 'category' cats='Vegetables' %}" class="nav_link">Vegetables</a>
                     </li>
                     <li class="nav_item">
-                        <a href="{% url 'fruits' %}" class="nav_link">Fruits</a>
+                        <a href="{% url 'category' cats='Fruits' %}" class="nav_link">Fruits</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#" class="nav_link">Meat</a>
+                        <a href="{% url 'category' cats='Meat' %}" class="nav_link">Meat</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#" class="nav_link">Add a new product</a>
+                        <a href="{% url 'add' %}" class="nav_link">Add a new product</a>
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_link">Log in</a>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="{% url 'add' %}" method="post">
+        {% csrf_token %}
+        {% if error %}
+            <p class="error">{{error}}</p>
+        {% endif %}
+        <label for="name">Product name</label>
+        <input type="text" placeholder="name" name="name" required><br>
+
+        <label for="price">Product price</label>
+        <input type="text" placeholder="price" name="price" required><br>
+
+        <label for="category">Product category</label>
+        <input type="text" placeholder="category" name="category" required><br>
+
+        <label for="photo">Product Photo</label>
+        <input type="file" name="photo"><br>
+
+        <button class="add_btn" type="submit">Add product</button>
+    </form>
+{% endblock %}
