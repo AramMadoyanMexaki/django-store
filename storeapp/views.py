@@ -26,26 +26,45 @@ def category(request, cats):
     if not products.exists():
         raise Http404("There are no products in that category")
     
-    return render(request, "products.html", {"category": category.name, "products": products})
+    context = {
+        "category": category.name, 
+        "products": products,
+    }
+    
+    return render(request, "products.html", context)
 
 
 def add_product(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        price = request.POST.get("price")
-        category_name = request.POST.get("category")
-        photo = request.POST.get("photo")
+        name = request.POST["name"]
+        price = request.POST["price"]
+        category_name = request.POST["category"]
+        photo = request.FILES.get("photo")
 
-        try:
-            category = Category.objects.get(name=category_name)
-        except Category.DoesNotExist:
-            return render(request, "add_product.html", {"error": "Category does not exist"})
+        if photo:
+            try:
+                category = Category.objects.get(name=category_name)
+            except Category.DoesNotExist:
+                return render(request, "add_product.html", {"error": "Category does not exist"})
 
-        Product.objects.create(name=name, price=price, category=category, photo=photo)
+            product = Product.objects.create(name=name, price=price, category=category, photo=photo)
+
+        else:
+            try:
+                category = Category.objects.get(name=category_name)
+            except Category.DoesNotExist:
+                return render(request, "add_product.html", {"error": "Category does not exist"})
+
+            product = Product.objects.create(name=name, price=price, category=category)
 
         return redirect('home')
 
     return render(request, "add_product.html", {})
+
+
+def buy(request, id):
+    product = get_object_or_404(Product, pk=id)
+    return render(request, "buy.html", {})
 
 
 def login(request):
