@@ -39,6 +39,7 @@ def add_product(request):
         name = request.POST["name"]
         price = request.POST["price"]
         category_name = request.POST["category"]
+        weight = float(request.POST["weight"])
         photo = request.FILES.get("photo")
 
         if photo:
@@ -47,7 +48,7 @@ def add_product(request):
             except Category.DoesNotExist:
                 return render(request, "add_product.html", {"error": "Category does not exist"})
 
-            product = Product.objects.create(name=name, price=price, category=category, photo=photo)
+            product = Product.objects.create(name=name, price=price, category=category, add_weight=weight, photo=photo)
 
         else:
             try:
@@ -55,7 +56,7 @@ def add_product(request):
             except Category.DoesNotExist:
                 return render(request, "add_product.html", {"error": "Category does not exist"})
 
-            product = Product.objects.create(name=name, price=price, category=category)
+            product = Product.objects.create(name=name, price=price, category=category, add_weight=weight)
 
         return redirect('home')
 
@@ -63,9 +64,19 @@ def add_product(request):
 
 
 def buy(request, id):
-    product = get_object_or_404(Product, pk=id)
-    return render(request, "buy.html", {})
+    if request.method == "POST":
+        weight = float(request.POST["weight"])
 
+        product = get_object_or_404(Product, pk=id)
+        if weight <= product.add_weight:
+            product.buy_weight = weight
+            product.count_rest_weight()
+            product.save()
+            return render(request, "buy.html", {"id": product.id})
+
+        return render(request, "buy.html", {"message": "There is not enough product in stock."})
+
+    return render(request, "buy.html")
 
 def login(request):
     pass

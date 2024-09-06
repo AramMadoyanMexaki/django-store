@@ -9,7 +9,7 @@
                 {% if p.photo %}
                     <img class="product_image" src="{{ p.photo.url }}" alt="product" width="250">
                 {% endif %}
-                <button class="but_btn">Buy</button>
+                <a href="{% url 'buy' id=p.id %}" class="buy_btn">Buy</a>
             </li>
         {% endfor %}
     </ul>
