@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from pygments.lexer import default
-
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -21,7 +19,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
 
-    def count_rest_weight(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         if self.add_weight is not None:
             self.rest_weight = self.add_weight - self.buy_weight
         else:

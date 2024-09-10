@@ -64,19 +64,19 @@ def add_product(request):
 
 
 def buy(request, id):
+    product = get_object_or_404(Product, pk=id)
     if request.method == "POST":
         weight = float(request.POST["weight"])
 
-        product = get_object_or_404(Product, pk=id)
         if weight <= product.add_weight:
             product.buy_weight = weight
-            product.count_rest_weight()
             product.save()
-            return render(request, "buy.html", {"id": product.id})
+            return render(request, "buy.html", {"id": product.id, "product": product})
 
-        return render(request, "buy.html", {"message": "There is not enough product in stock."})
+        return render(request, "buy.html", {"message": "There is not enough product in stock.", "id": product.id, "product": product})
 
-    return render(request, "buy.html")
+    return render(request, "buy.html", {"product": product})
+
 
 def login(request):
     pass
