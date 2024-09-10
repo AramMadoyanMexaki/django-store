@@ -71,7 +71,7 @@ def buy(request, id):
         if weight <= product.add_weight:
             product.buy_weight = weight
             product.save()
-            return render(request, "buy.html", {"id": product.id, "product": product})
+            return render(request, "buy.html", {"id": product.id, "success": "the product is purchased.", "product": product})
 
         return render(request, "buy.html", {"message": "There is not enough product in stock.", "id": product.id, "product": product})
 
