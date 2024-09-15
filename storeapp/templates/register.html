@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    {% if error %}
+      <p class="error">{{error}}</p>
+    {% endif %}
+    <input name="pass" type="password" placeholder="password">
+    <input name="username" type="text" placeholder="username">
+    <input name="email" type="email" placeholder="email">
+    <button class="login" type="submit">Registrate</button>
+</form>   
 {% endblock %}

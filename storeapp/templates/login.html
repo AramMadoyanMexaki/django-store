@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {% if error %}
+          <p class="error">{{error}}</p>
+        {% endif %}
+        <br>
+        <input name="pass" type="password" placeholder="password">
+        <input name="email" type="email" placeholder="email">
+        <button class="login" type="submit">Log in</button><br><br>
+        <a href="{% url 'register' %}">Sign up</a>
+    </form>    
 {% endblock %}

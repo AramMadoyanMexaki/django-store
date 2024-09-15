@@ -5,8 +5,7 @@
         {% csrf_token %}
         {% if message %}
             <p>{{ message }}</p>
-        {% endif %}
-        {% if success %}
+        {% elif success %}
             <p class="success">{{ success }}</p>
         {% endif %}
         <input type="text" name="name" placeholder="Username" required value="{{ request.POST.name }}"><br>

@@ -10,8 +10,8 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to="products/photos/", max_length=100)
-    price = models.IntegerField(default=0)
+    photo = models.ImageField(upload_to="products/photos/", max_length=100, null=True, blank=True)
+    price = models.IntegerField(default=0, verbose_name="Price kg")
     buy_weight = models.FloatField(default=0)
     add_weight = models.FloatField(null=True, blank=True)
     rest_weight = models.FloatField(default=0)
@@ -31,6 +31,6 @@ class Product(models.Model):
         return self.name
 
 
-# class StoreUser(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#
+class StoreUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    

@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
 from .models import *
 
 
@@ -68,19 +69,43 @@ def buy(request, id):
     if request.method == "POST":
         weight = float(request.POST["weight"])
 
-        if weight <= product.add_weight:
-            product.buy_weight = weight
-            product.save()
-            return render(request, "buy.html", {"id": product.id, "success": "the product is purchased.", "product": product})
+        if request.user.is_authenticated:
+            if weight <= product.add_weight:
+                product.buy_weight = weight
+                product.save()
+                return render(request, "buy.html", {"id": product.id, "success": "the product is purchased.", "product": product})
 
-        return render(request, "buy.html", {"message": "There is not enough product in stock.", "id": product.id, "product": product})
+            return render(request, "buy.html", {"message": "There is not enough product in stock.", "id": product.id, "product": product})
 
-    return render(request, "buy.html", {"product": product})
+    return HttpResponseRedirect("/login/")
 
 
 def login(request):
-    pass
+    if request.method == "GET":
+        return render(request, "login.html", {})
+
+    password = request.POST["pass"]
+    email = request.POST["email"]
+
+    user = authenticate(password=password, email=email)
+    if user:
+        login(request, user)
+        return HttpResponseRedirect("/buy/")
+        
+    return render(request, "login.html", {"error": "Failed to login to account"})
 
 
 def register(request):
-    pass
+    if request.method == "GET":
+        return render(request, "register.html", {})
+    
+    password = request.POST["pass"]
+    email = request.POST["email"]
+    username = request.POST["username"]
+
+    user = User.objects.create_user(password= password, email=email, username=username)
+    user.save()
+
+    return HttpResponseRedirect("/login/")
+
+
