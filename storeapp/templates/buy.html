@@ -8,6 +8,7 @@
         {% elif success %}
             <p class="success">{{ success }}</p>
         {% endif %}
+        <h1 class="product_name">{{product.name}}</h1>
         <input type="text" name="name" placeholder="Username" required value="{{ request.POST.name }}"><br>
         <input type="tel" name="phone" placeholder="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required value="{{ request.POST.phone }}"><br>
         <input type="text" name="address" placeholder="123 Main St, City, Country" value="{{ request.POST.address }}"><br>

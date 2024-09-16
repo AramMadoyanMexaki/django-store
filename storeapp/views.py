@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .models import *
@@ -77,20 +77,25 @@ def buy(request, id):
 
             return render(request, "buy.html", {"message": "There is not enough product in stock.", "id": product.id, "product": product})
 
-    return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/login/")
+    
+    return render(request, "buy.html", {"id": product.id, "product": product})
 
 
-def login(request):
+def _login(request):
     if request.method == "GET":
         return render(request, "login.html", {})
 
     password = request.POST["pass"]
-    email = request.POST["email"]
+    username = request.POST["username"]
 
-    user = authenticate(password=password, email=email)
+    print("Entered password " + password + "\n" + "Entered username" + username)
+
+    user = authenticate(request, username=username, password=password)
+    print("User ", user)
     if user:
         login(request, user)
-        return HttpResponseRedirect("/buy/")
+        return HttpResponseRedirect("/")
         
     return render(request, "login.html", {"error": "Failed to login to account"})
 
@@ -102,10 +107,22 @@ def register(request):
     password = request.POST["pass"]
     email = request.POST["email"]
     username = request.POST["username"]
+    first_name = request.POST["first_name"]
+    last_name = request.POST["last_name"]
 
-    user = User.objects.create_user(password= password, email=email, username=username)
+    user = User.objects.create_user(
+        password= password, 
+        email=email, 
+        first_name=first_name, 
+        last_name=last_name, 
+        username=username
+    )
+
     user.save()
 
     return HttpResponseRedirect("/login/")
 
 
+def _logout(request):
+    logout(request)
+    return HttpResponseRedirect("/login/")
